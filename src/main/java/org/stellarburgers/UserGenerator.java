@@ -1,2 +1,13 @@
-package org.stellarburgers;public class UserGenerator {
+package org.stellarburgers;
+
+
+import org.apache.commons.lang3.RandomStringUtils;
+
+public class UserGenerator {
+
+    public User random(){
+        return new User(RandomStringUtils.randomAlphabetic(10) + "@yandex.ru",
+                RandomStringUtils.randomAlphabetic(10),
+                RandomStringUtils.randomAlphabetic(10));
+    }
 }

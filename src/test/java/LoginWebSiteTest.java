@@ -1,3 +1,4 @@
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -5,13 +6,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.stellarburgers.*;
 
-public class EnterTest {
+public class LoginWebSiteTest {
 
     private WebDriver driver;
 
     @Before
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C:/WebDriver/bin/chromedriver.exe");
+        System.setProperty("web-driver.chrome.driver", "C:/WebDriver/bin/chromedriver.exe");
         driver = new ChromeDriver();
     }
 
@@ -21,11 +22,12 @@ public class EnterTest {
     }
 
     @Test
+    @DisplayName("Checking the login using the \"Log in to account\" button on the main page")
     public void loginUsingLoginAccountButtonHomePage() {
         var user = new UserGenerator().random();
-        LoginStellarBurgers client = new LoginStellarBurgers(driver);
-        RegistrationStellarBurgers registration = new RegistrationStellarBurgers(driver);
-        HomePageStellarBurgers homepage = new HomePageStellarBurgers(driver);
+        Login client = new Login(driver);
+        Registration registration = new Registration(driver);
+        HomePage homepage = new HomePage(driver);
         registration
                 .open()
                 .register(user);
@@ -37,11 +39,12 @@ public class EnterTest {
     }
 
     @Test
+    @DisplayName("Checking the login via the \"Personal Account\" button")
     public void loginPersonalAccountButton() {
         var user = new UserGenerator().random();
-        LoginStellarBurgers client = new LoginStellarBurgers(driver);
-        RegistrationStellarBurgers registration = new RegistrationStellarBurgers(driver);
-        HomePageStellarBurgers homepage = new HomePageStellarBurgers(driver);
+        Login client = new Login(driver);
+        Registration registration = new Registration(driver);
+        HomePage homepage = new HomePage(driver);
         registration
                 .open()
                 .register(user);
@@ -53,11 +56,12 @@ public class EnterTest {
     }
 
     @Test
+    @DisplayName("Checking the login via the button in the registration form")
     public void loginButtonRegistrationForm() {
         var user = new UserGenerator().random();
-        LoginStellarBurgers client = new LoginStellarBurgers(driver);
-        RegistrationStellarBurgers registration = new RegistrationStellarBurgers(driver);
-        HomePageStellarBurgers homepage = new HomePageStellarBurgers(driver);
+        Login client = new Login(driver);
+        Registration registration = new Registration(driver);
+        HomePage homepage = new HomePage(driver);
         registration
                 .open()
                 .register(user);
@@ -71,12 +75,13 @@ public class EnterTest {
     }
 
     @Test
+    @DisplayName("Checking the login via the button in the password recovery form")
     public void loginButtonPasswordRecoveryForm() {
         var user = new UserGenerator().random();
-        PasswordRecoveryStellarBurgers recover = new PasswordRecoveryStellarBurgers(driver);
-        LoginStellarBurgers client = new LoginStellarBurgers(driver);
-        RegistrationStellarBurgers registration = new RegistrationStellarBurgers(driver);
-        HomePageStellarBurgers homepage = new HomePageStellarBurgers(driver);
+        PasswordRecovery recover = new PasswordRecovery(driver);
+        Login client = new Login(driver);
+        Registration registration = new Registration(driver);
+        HomePage homepage = new HomePage(driver);
         registration
                 .open()
                 .register(user);

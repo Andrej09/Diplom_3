@@ -10,10 +10,10 @@ import java.time.Duration;
 
 import static io.restassured.RestAssured.given;
 
-public class LoginStellarBurgers {
+public class Login {
     private WebDriver driver;
 
-    public LoginStellarBurgers(WebDriver driver){
+    public Login(WebDriver driver){
         this.driver = driver;
     }
 
@@ -25,35 +25,35 @@ public class LoginStellarBurgers {
     private By buttonRegistration = By.xpath(".//p/a[text() = 'Зарегистрироваться']");
     private By buttonRecoverPassword = By.xpath(".//p/a[text() = 'Восстановить пароль']");
 
-    public LoginStellarBurgers open(){
+    public Login open(){
         driver.get(url);
         return this;
     }
 
-    public LoginStellarBurgers clickRegistrationButton(){
+    public Login clickRegistrationButton(){
         new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(buttonRegistration));
         driver.findElement(buttonRegistration).click();
         return this;
     }
 
-    public LoginStellarBurgers clickRecoverPasswordButton(){
+    public Login clickRecoverPasswordButton(){
         new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(buttonRecoverPassword));
         driver.findElement(buttonRecoverPassword).click();
         return this;
     }
 
-    public LoginStellarBurgers setEmailField(String email){
+    public Login setEmailField(String email){
         driver.findElement(emailField).sendKeys(email);
         return this;
     }
 
-    public LoginStellarBurgers setPasswordField(String password){
+    public Login setPasswordField(String password){
         driver.findElement(passwordField).sendKeys(password);
         return this;
     }
-    public LoginStellarBurgers clickLogin(){
+    public Login clickLogin(){
         new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(buttonEnter));
         driver.findElement(buttonEnter).click();

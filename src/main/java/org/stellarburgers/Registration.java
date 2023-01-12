@@ -6,12 +6,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class RegistrationStellarBurgers {
+public class Registration {
 
     private WebDriver driver;
     private final String url = "https://stellarburgers.nomoreparties.site/register";
 
-    public RegistrationStellarBurgers(WebDriver driver){
+    public Registration(WebDriver driver){
         this.driver = driver;
     }
 
@@ -23,34 +23,34 @@ public class RegistrationStellarBurgers {
     private By buttonEnter = By.xpath(".//p/a[text() = 'Войти']");
 
 
-    public RegistrationStellarBurgers open(){
+    public Registration open(){
         driver.get(url);
         return this;
     }
 
-    public RegistrationStellarBurgers setUsername(String name){
+    public Registration setUsername(String name){
         driver.findElement(nameField).sendKeys(name);
         return this;
     }
 
-    public RegistrationStellarBurgers setEmail(String email){
+    public Registration setEmail(String email){
         driver.findElement(emailField).sendKeys(email);
         return this;
     }
 
-    public RegistrationStellarBurgers setPassword(String password){
+    public Registration setPassword(String password){
         driver.findElement(passwordField).sendKeys(password);
         return this;
     }
 
-    public RegistrationStellarBurgers clickRegister(){
+    public Registration clickRegister(){
         new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(registerButton));
         driver.findElement(registerButton).click();
         return this;
     }
 
-    public RegistrationStellarBurgers register(User user){
+    public Registration register(User user){
         setUsername(user.getFirstName());
         setEmail(user.getEmail());
         setPassword(user.getPassword());
@@ -58,13 +58,13 @@ public class RegistrationStellarBurgers {
         return this;
     }
 
-    public RegistrationStellarBurgers waitInvalidPassword(){
+    public Registration waitInvalidPassword(){
         new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(InvalidPassword));
         return this;
     }
 
-    public RegistrationStellarBurgers clickButtonEnter(){
+    public Registration clickButtonEnter(){
         driver.findElement(buttonEnter).click();
         return this;
     }

@@ -8,12 +8,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class HomePageStellarBurgers {
+public class HomePage {
     private WebDriver driver;
 
     private final String url = "https://stellarburgers.nomoreparties.site";
 
-    public HomePageStellarBurgers(WebDriver driver){
+    public HomePage(WebDriver driver){
         this.driver = driver;
     }
     private By personalAccountButton = By.xpath(".//p[text() = 'Личный Кабинет']");
@@ -22,12 +22,12 @@ public class HomePageStellarBurgers {
     private By saucesButton = By.xpath(".//div/span[text() = 'Соусы']");
     private By rollsButton = By.xpath(".//div/span[text() = 'Булки']");
 
-    public HomePageStellarBurgers open(){
+    public HomePage open(){
         driver.get(url);
         return this;
     }
 
-    public HomePageStellarBurgers scrollFillingsButton(){
+    public HomePage scrollFillingsButton(){
         WebElement element = driver.findElement(fillingsButton);
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
         new WebDriverWait(driver, Duration.ofSeconds(3))
@@ -35,7 +35,7 @@ public class HomePageStellarBurgers {
         return this;
     }
 
-    public HomePageStellarBurgers scrollSaucesButton(){
+    public HomePage scrollSaucesButton(){
         WebElement element = driver.findElement(saucesButton);
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
         new WebDriverWait(driver, Duration.ofSeconds(3))
@@ -43,7 +43,7 @@ public class HomePageStellarBurgers {
         return this;
     }
 
-    public HomePageStellarBurgers scrollRollsButton(){
+    public HomePage scrollRollsButton(){
         WebElement element = driver.findElement(rollsButton);
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
         new WebDriverWait(driver, Duration.ofSeconds(3))
@@ -51,7 +51,7 @@ public class HomePageStellarBurgers {
         return this;
     }
 
-    public HomePageStellarBurgers clickPersonalAccountButton(){
+    public HomePage clickPersonalAccountButton(){
         new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(personalAccountButton));
         driver.findElement(personalAccountButton).click();
@@ -59,7 +59,7 @@ public class HomePageStellarBurgers {
     }
 
 
-    public HomePageStellarBurgers clickLoginAccountButton(){
+    public HomePage clickLoginAccountButton(){
         new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(loginAccountButton));
         driver.findElement(loginAccountButton).click();

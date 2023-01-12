@@ -6,13 +6,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class PasswordRecoveryStellarBurgers {
+public class PasswordRecovery {
 
     private WebDriver driver;
 
     private final String url = "https://stellarburgers.nomoreparties.site/forgot-password";
 
-    public PasswordRecoveryStellarBurgers(WebDriver driver){
+    public PasswordRecovery(WebDriver driver){
         this.driver = driver;
     }
 
@@ -20,24 +20,24 @@ public class PasswordRecoveryStellarBurgers {
     private By buttonRecover = By.xpath(".//button[text() = 'Восстановить']");
     private By buttonEnter = By.xpath(".//a[text() = 'Войти']");
 
-    public PasswordRecoveryStellarBurgers open(){
+    public PasswordRecovery open(){
         driver.get(url);
         return this;
     }
 
-    public PasswordRecoveryStellarBurgers setEmailField(String email){
+    public PasswordRecovery setEmailField(String email){
         driver.findElement(emailField).sendKeys(email);
         return this;
     }
 
-    public PasswordRecoveryStellarBurgers clickRecoverButton(){
+    public PasswordRecovery clickRecoverButton(){
         new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(buttonRecover));
         driver.findElement(buttonRecover).click();
         return this;
     }
 
-    public PasswordRecoveryStellarBurgers clickLogin(){
+    public PasswordRecovery clickLogin(){
         new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(buttonEnter));
         driver.findElement(buttonEnter).click();
