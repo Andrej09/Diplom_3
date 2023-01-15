@@ -1,10 +1,11 @@
-package org.stellarburgers;
+package org.stellarburgers.sitepages;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.stellarburgers.user.User;
 
 import java.time.Duration;
 

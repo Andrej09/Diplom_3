@@ -1,4 +1,4 @@
-package org.stellarburgers;
+package org.stellarburgers.user;
 
 public class User {
 

@@ -4,94 +4,92 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.stellarburgers.*;
+import org.stellarburgers.sitepages.HomePage;
+import org.stellarburgers.sitepages.Login;
+import org.stellarburgers.sitepages.PasswordRecovery;
+import org.stellarburgers.sitepages.Registration;
+import org.stellarburgers.user.User;
+import org.stellarburgers.user.UserGenerator;
 
 public class LoginWebSiteTest {
 
     private WebDriver driver;
+    private User user;
+    private Login client;
+    private Registration registration;
+    private HomePage main;
+    private PasswordRecovery recover;
+    private String accessToken;
 
     @Before
     public void setUp() {
-        System.setProperty("web-driver.chrome.driver", "C:/WebDriver/bin/chromedriver.exe");
+        System.setProperty("web-driver.chrome.driver", "src/properties/chromedriver.exe");
         driver = new ChromeDriver();
+        user = new UserGenerator().random();
+        client = new Login(driver);
+        registration = new Registration(driver);
+        main = new HomePage(driver);
+        recover = new PasswordRecovery(driver);
     }
 
     @After
     public void teardown() {
         driver.quit();
+        if (accessToken != null) {
+            client.delete(accessToken);
+        }
     }
 
     @Test
     @DisplayName("Checking the login using the \"Log in to account\" button on the main page")
     public void loginUsingLoginAccountButtonHomePage() {
-        var user = new UserGenerator().random();
-        Login client = new Login(driver);
-        Registration registration = new Registration(driver);
-        HomePage homepage = new HomePage(driver);
         registration
                 .open()
                 .register(user);
-        homepage
+        main
                 .open()
                 .clickLoginAccountButton();
-        String accessToken = client.Login(user).extract().path("accessToken");
-        client.delete(accessToken);
+        accessToken = client.Login(user).extract().path("accessToken");
     }
 
     @Test
     @DisplayName("Checking the login via the \"Personal Account\" button")
     public void loginPersonalAccountButton() {
-        var user = new UserGenerator().random();
-        Login client = new Login(driver);
-        Registration registration = new Registration(driver);
-        HomePage homepage = new HomePage(driver);
         registration
                 .open()
                 .register(user);
-        homepage
+        main
                 .open()
                 .clickPersonalAccountButton();
-        String accessToken = client.Login(user).extract().path("accessToken");
-        client.delete(accessToken);
+         accessToken = client.Login(user).extract().path("accessToken");
     }
 
     @Test
     @DisplayName("Checking the login via the button in the registration form")
     public void loginButtonRegistrationForm() {
-        var user = new UserGenerator().random();
-        Login client = new Login(driver);
-        Registration registration = new Registration(driver);
-        HomePage homepage = new HomePage(driver);
         registration
                 .open()
                 .register(user);
-        homepage
+        main
                 .open()
                 .clickPersonalAccountButton();
         client.clickRegistrationButton();
         registration.clickButtonEnter();
-        String accessToken = client.Login(user).extract().path("accessToken");
-        client.delete(accessToken);
+        accessToken = client.Login(user).extract().path("accessToken");
     }
 
     @Test
     @DisplayName("Checking the login via the button in the password recovery form")
     public void loginButtonPasswordRecoveryForm() {
-        var user = new UserGenerator().random();
-        PasswordRecovery recover = new PasswordRecovery(driver);
-        Login client = new Login(driver);
-        Registration registration = new Registration(driver);
-        HomePage homepage = new HomePage(driver);
         registration
                 .open()
                 .register(user);
-        homepage
+        main
                 .open()
                 .clickPersonalAccountButton();
         client.clickRecoverPasswordButton();
         recover.clickLogin();
-        String accessToken = client.Login(user).extract().path("accessToken");
-        client.delete(accessToken);
+        accessToken = client.Login(user).extract().path("accessToken");
     }
 
 }

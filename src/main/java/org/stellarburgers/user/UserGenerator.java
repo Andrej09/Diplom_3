@@ -1,7 +1,8 @@
-package org.stellarburgers;
+package org.stellarburgers.user;
 
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.stellarburgers.user.User;
 
 public class UserGenerator {
 
