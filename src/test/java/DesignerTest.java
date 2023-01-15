@@ -21,7 +21,7 @@ public class DesignerTest {
     private String accessToken;
     @Before
     public void setUp() {
-        System.setProperty("web-driver.chrome.driver", "src/properties/chromedriver.exe");
+        System.setProperty("web-driver.chrome.driver", "src/test/properties/chromedriver.exe");
         driver = new ChromeDriver();
         user = new UserGenerator().random();
         client = new Login(driver);
