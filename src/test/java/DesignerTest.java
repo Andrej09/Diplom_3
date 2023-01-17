@@ -17,8 +17,8 @@ public class DesignerTest {
     private Login client;
     private Registration registration;
     private HomePage main;
-
     private String accessToken;
+
     @Before
     public void setUp() {
         System.setProperty("web-driver.chrome.driver", "src/test/properties/chromedriver.exe");
@@ -38,8 +38,8 @@ public class DesignerTest {
     }
 
     @Test
-    @DisplayName("Checking transitions between sections of the constructor")
-    public void designerScrollTest() {
+    @DisplayName("Checking the transition to the bread section")
+    public void CheckingTransitionBreadSection() {
         registration
                 .open()
                 .register(user);
@@ -47,6 +47,30 @@ public class DesignerTest {
         main
                 .clickSaucesButton()
                 .clickRollsButton()
-                .clickFillingsButton();
+                .checkActiveSection("Булки");
+    }
+
+    @Test
+    @DisplayName("Checking the transition to the sauces section")
+    public void CheckingTransitionSaucesSection() {
+        registration
+                .open()
+                .register(user);
+        accessToken = client.Login(user).extract().path("accessToken");
+        main
+                .clickSaucesButton()
+                .checkActiveSection("Соусы");
+    }
+
+    @Test
+    @DisplayName("Checking the transition to the filling section")
+    public void CheckingTransitionFillingSection() {
+        registration
+                .open()
+                .register(user);
+        accessToken = client.Login(user).extract().path("accessToken");
+        main
+                .clickFillingsButton()
+                .checkActiveSection("Начинки");
     }
 }
